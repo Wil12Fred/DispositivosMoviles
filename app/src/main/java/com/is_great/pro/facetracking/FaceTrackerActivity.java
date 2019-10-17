@@ -246,7 +246,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             if (!fileExists(getApplicationContext(), filename)) {
                 File file = getApplicationContext().getFileStreamPath(filename);
                 //File file = new File("/data/user/0/com.is_great.pro.facetracking/files/face"+token+"-"+face.getId()+".png");
-                Log.d("FileName", file.getAbsolutePath() +" no existe");
+                Log.d("FileName", face.getId()+".png" +" no existe");
                 try (FileOutputStream out = new FileOutputStream(file)) {
                     croppedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
                     // PNG is a lossless format, the compression factor (100) is ignored
@@ -276,13 +276,13 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         Bitmap b = Bitmap.createBitmap(width , height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         v.layout(0, 0, width, height);
-//Get the view’s background
+        //Get the view’s background
         Drawable bgDrawable =v.getBackground();
         if (bgDrawable!=null)
-//has background drawable, then draw it on the canvas
+        //has background drawable, then draw it on the canvas
             bgDrawable.draw(c);
         else
-//does not have background drawable, then draw white background on the canvas
+        //does not have background drawable, then draw white background on the canvas
             c.drawColor(Color.WHITE);
         v.draw(c);
         return b;

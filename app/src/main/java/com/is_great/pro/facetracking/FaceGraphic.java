@@ -81,11 +81,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         float y = translateY(face.getPosition().y + face.getHeight() / 2);
         canvas.drawCircle(x, y, FACE_POSITION_RADIUS, mFacePositionPaint);
         canvas.drawText("id: " + mFaceId, x + ID_X_OFFSET, y + ID_Y_OFFSET, mIdPaint);
-        //canvas.drawText("happiness: " + String.format("%.2f", face.getIsSmilingProbability()), x - ID_X_OFFSET, y - ID_Y_OFFSET, mIdPaint);
-
-        //String prediction = getPrediction(face.getEulerY(),face.getEulerZ());
-        //canvas.drawText("Prediction: "+prediction,x-ID_X_OFFSET,y-ID_Y_OFFSET+3*ID_TEXT_SIZE,mIdPaint);
-
         float xOffset = scaleX(face.getWidth() / 2.0f);
         float yOffset = scaleY(face.getHeight() / 2.0f);
         float left = x - xOffset;
@@ -119,79 +114,4 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         }, 600);
 
     }
-
-    /*private String getPrediction(float eulerY, float eulerZ) {
-        String feature="";
-        if(eulerZ<5f && eulerZ >=0f){
-            if(eulerY>0f && eulerY<60f){
-                feature="Facing straight right";
-            }else{
-                feature="no tilt";
-            }
-        }else if(eulerZ>5f && eulerZ<45f){
-            if(eulerY>0f && eulerY<=60f){
-                feature="facing slightly right up";
-            }else {
-                feature="Face Slightly tilted to right";
-            }
-        }else if(eulerZ>45f){
-            if(eulerY>60f && eulerY!=0){
-                feature="Facing right up";
-            }else{
-                feature="Face tilted to right";
-            }
-        }else if(eulerZ<0f && eulerZ >-5f){
-            if(eulerY>-60f && eulerY!=0){
-                feature="Facing right";
-            }else{
-                feature="no tilt";
-            }
-        }else if(eulerZ<-5f && eulerZ>-45f){
-            if(eulerY>-60f && eulerY!=0){
-                feature="Facing Left up";
-            }else{
-                feature="Face Slightly tilted to left";
-            }
-        }else{
-            if(eulerY>-6f && eulerY!=0){
-                feature="Facing Left up";
-            }else{
-                feature="Face tilted to left";
-            }
-        }
-
-        return feature;
-    }*/
-
-    /*private String getUpdates(){
-        String update;
-        boolean smiling = mFace.getIsSmilingProbability() > SMILING_PROB_THRESHOLD;
-
-        boolean leftEyeClosed = mFace.getIsLeftEyeOpenProbability() < EYE_OPEN_PROB_THRESHOLD;
-        boolean rightEyeClosed = mFace.getIsRightEyeOpenProbability() < EYE_OPEN_PROB_THRESHOLD;
-        if(smiling) {
-            if (leftEyeClosed && !rightEyeClosed) {
-                update="Left Wink";
-            }  else if(rightEyeClosed && !leftEyeClosed){
-                update = "Right WInk";
-            } else if (leftEyeClosed){
-                update = "Closed Eye Smile";
-            } else {
-                update = "Smile";
-            }
-        } else {
-            if (leftEyeClosed && !rightEyeClosed) {
-                update = "Left Wink Frawn";
-            }  else if(rightEyeClosed && !leftEyeClosed){
-                update = "Right Wink Frawn";
-            } else if (leftEyeClosed){
-                update = "Closed Eye Frawn";
-            } else {
-                update = "Frawn";
-            }
-        }
-
-        return update;
-
-    }*/
 }
