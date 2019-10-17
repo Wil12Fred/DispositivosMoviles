@@ -242,9 +242,10 @@ public final class FaceTrackerActivity extends AppCompatActivity {
                 bottom = image.getHeight();
             }
             Bitmap croppedBitmap = Bitmap.createBitmap(image, left, top, right-left, bottom-top);
-            String path = Environment.getExternalStorageDirectory().toString();
-            if (!fileExists(getApplicationContext(), "face" + token + "-" + face.getId()+".png")) {
-                File file = new File("/data/user/0/com.is_great.pro.facetracking/files/face"+token+"-"+face.getId()+".png");
+            String filename = "face" + token + "-" + face.getId()+".png";
+            if (!fileExists(getApplicationContext(), filename)) {
+                File file = getApplicationContext().getFileStreamPath(filename);
+                //File file = new File("/data/user/0/com.is_great.pro.facetracking/files/face"+token+"-"+face.getId()+".png");
                 Log.d("FileName", file.getAbsolutePath() +" no existe");
                 try (FileOutputStream out = new FileOutputStream(file)) {
                     croppedBitmap.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
@@ -289,7 +290,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 
     public boolean fileExists(Context context, String filename) {
         File file = context.getFileStreamPath(filename);
-        Log.d("FileName", file.getAbsolutePath());
+        //Log.d("FileName", file.getAbsolutePath());
         if(file == null || !file.exists()) {
             return false;
         }
